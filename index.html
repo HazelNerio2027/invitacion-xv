@@ -2,66 +2,58 @@
 <html lang="es">
 
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación Digital</title>
 
-    <!-- Hojas de Estilo (CSS en la raíz) -->
-    <!-- Cargar primero el CSS principal y luego el responsive -->
-<link rel="stylesheet" href="animations.css">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="responsive.css"> <!-- Debe ser el ÚLTIMO CSS -->
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Biblioteca de Animaciones AOS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-    <!-- Scripts JS (JS en la raíz) -->
-    <script defer src="components.js"></script>
+    <!-- Hojas de Estilo CSS -->
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+
+    <!-- Scripts JS (Solo se cargan una vez aquí con defer) -->
     <script defer src="apps.js"></script>
+    <script defer src="components.js"></script>
     <script defer src="countdown.js"></script>
 </head>
 
 <body>
-<div id="loader"></div>
 
-<div id="navbar"></div>
+    <!-- Contenedores dinámicos modularizados -->
+    <div id="loader"></div>
+    <div id="navbar"></div>
+    <div id="hero"></div>
+    <div id="welcome"></div>
+    <div id="countdown"></div>
+    <div id="story"></div>
+    <div id="gallery"></div>
+    <div id="timeline"></div>
+    <div id="dresscode"></div>
+    <div id="location"></div>
+    <div id="rsvp"></div>
+    <div id="footer"></div>
 
-<div id="hero"></div>
+    <!-- Audio de fondo (Ubicación correcta dentro del body) -->
+    <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
 
-<div id="welcome"></div>
+    <!-- Script de Animaciones AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            AOS.init({
+                duration: 1200,
+                once: true
+            });
+        });
+    </script>
 
-<div id="countdown"></div>
-
-<div id="story"></div>
-
-<div id="gallery"></div>
-
-<div id="timeline"></div>
-
-<div id="dresscode"></div>
-
-<div id="location"></div>
-
-<div id="rsvp"></div>
-
-<div id="footer"></div>
 </body>
-
-<script defer src="components.js"></script>
-<script defer src="apps.js"></script>
-<script defer src="countdown.js"></script>
-
-<audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
-
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-<script>
-    AOS.init({
-        duration: 1200,
-        once: true
-    });
-</script>
 </html>
