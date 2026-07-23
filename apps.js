@@ -10,10 +10,6 @@ function iniciarLoader() {
     }, 3000);
 }
 
-// Variable para evitar que los clics se crucen
-javascript
-let isAudioTransitioning = false;
-
 document.addEventListener("click", function(e) {
 
     // 1. Botón "Abrir Invitación"
@@ -22,14 +18,11 @@ document.addEventListener("click", function(e) {
         const music = document.getElementById("bgMusic");
         const musicBtn = document.getElementById("musicButton");
 
-        if (music && music.paused && !isAudioTransitioning) {
-            isAudioTransitioning = true;
+        if (music && music.paused) {
             music.play().then(() => {
                 if (musicBtn) musicBtn.innerHTML = "♫";
             }).catch((err) => {
                 console.log("Error al iniciar audio:", err);
-            }).finally(() => {
-                isAudioTransitioning = false;
             });
         }
 
@@ -48,21 +41,16 @@ document.addEventListener("click", function(e) {
     if (musicBtn) {
         const music = document.getElementById("bgMusic");
 
-        if (music && !isAudioTransitioning) {
-            isAudioTransitioning = true;
-
+        if (music) {
             if (music.paused) {
                 music.play().then(() => {
                     musicBtn.innerHTML = "♫";
                 }).catch((err) => {
-                    console.log("Error al reanudar audio:", err);
-                }).finally(() => {
-                    isAudioTransitioning = false;
+                    console.log("Error al reproducir:", err);
                 });
             } else {
                 music.pause();
                 musicBtn.innerHTML = "♪";
-                isAudioTransitioning = false;
             }
         }
     }
