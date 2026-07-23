@@ -17,12 +17,12 @@ document.addEventListener("click", function(e){
     if(openBtn){
         const music = document.getElementById("bgMusic");
 
-        if(music){
+        if(music && music.paused){
             music.play().then(() => {
                 const musicBtn = document.getElementById("musicButton");
                 if(musicBtn) musicBtn.innerHTML = "♫";
             }).catch((err) => {
-                console.log("El navegador bloqueó el audio o no encontró la ruta:", err);
+                console.log("No se pudo iniciar el audio:", err);
             });
         }
 
@@ -42,12 +42,12 @@ document.addEventListener("click", function(e){
         const music = document.getElementById("bgMusic");
 
         if(music){
-            // Usamos la propiedad nativa .paused en lugar de la variable
             if(music.paused){
                 music.play().then(() => {
                     musicBtn.innerHTML = "♫";
                 }).catch(err => console.log("Error al reproducir:", err));
             } else {
+                // Pausar solo si ya está reproduciéndose activamente
                 music.pause();
                 musicBtn.innerHTML = "♪";
             }
