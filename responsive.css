@@ -1,38 +1,55 @@
 /*====================================
-    NAVBAR RESPONSIVE AJUSTES
+    NAVBAR RESPONSIVE CORREGIDO
 ====================================*/
 @media (max-width: 768px) {
+    /* Contenedor principal de la barra */
     .navbar {
-        padding: 10px 15px;
-        background: rgba(0, 0, 0, 0.9) !important;
-        backdrop-filter: blur(10px);
+        display: flex !important;
+        flex-direction: column !important; /* Pone el logo arriba y los botones abajo */
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 10px 15px !important;
+        background: rgba(0, 0, 0, 0.4) !important; /* Fondo sutil y elegante */
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-radius: 20px !important;
+        margin: 10px auto !important;
+        width: 92% !important;
     }
 
-    .navbar-brand {
-        font-size: 18px;
+    /* El nombre 'Valeria' o Logo arriba separado */
+    .navbar-brand, .logo {
+        font-size: 22px !important;
+        margin-bottom: 8px !important; /* Crea espacio para que no pegue a Inicio */
+        display: block !important;
+        text-align: center !important;
     }
 
-    /* Ocultar menú horizontal largo o adaptarlo a contenedor scrollable */
-    .nav-links {
-        display: flex;
-        overflow-x: auto;
-        white-space: nowrap;
-        gap: 12px;
-        padding: 8px 0;
-        max-width: 100%;
-        -webkit-overflow-scrolling: touch;
+    /* Contenedor de los enlaces (Inicio, Galería, Evento, etc.) */
+    .nav-links, .navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        overflow-x: auto !important; /* Permite deslizar con el dedo si faltan botones */
+        white-space: nowrap !important;
+        gap: 15px !important;
+        padding-bottom: 4px !important;
+        justify-content: flex-start !important;
+        -webkit-overflow-scrolling: touch !important;
     }
 
-    .nav-links::-webkit-scrollbar {
-        display: none; /* Oculta la barra de scroll molesta */
+    /* Ocultar la barra de scroll inferior fea */
+    .nav-links::-webkit-scrollbar, .navbar-nav::-webkit-scrollbar {
+        display: none !important;
     }
 
-    .nav-links a {
-        font-size: 12px;
-        padding: 6px 10px;
-        background: rgba(212, 175, 55, 0.1);
-        border-radius: 20px;
-        border: 1px solid rgba(212, 175, 55, 0.3);
+    /* Cada botoncito individual */
+    .nav-links a, .navbar-nav a {
+        font-size: 13px !important;
+        padding: 4px 10px !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        flex-shrink: 0 !important; /* Evita que el texto se aplaste */
     }
 }
 /*====================================
