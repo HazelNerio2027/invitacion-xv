@@ -42,7 +42,7 @@ document.addEventListener("click", function(e){
         const music = document.getElementById("bgMusic");
 
         if(music){
-            // Preguntamos directamente si el elemento audio está pausado
+            // Usamos la propiedad nativa .paused en lugar de la variable
             if(music.paused){
                 music.play().then(() => {
                     musicBtn.innerHTML = "♫";
