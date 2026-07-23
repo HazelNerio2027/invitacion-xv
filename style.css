@@ -91,12 +91,16 @@ body{
 }
 
 .hero-content{
-    position:relative;
-    z-index:2;
-    text-align:center;
-    color:white;
-    max-width:700px;
-    padding:20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    color: white;
+    max-width: 700px;
+    width: 90%;
+    padding: 20px;
 }
 
 .hero-content h3{
