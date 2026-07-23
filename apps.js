@@ -10,52 +10,27 @@ function iniciarLoader() {
     }, 3000);
 }
 
-document.addEventListener("click", function(e) {
-
-    // 1. Botón "Abrir Invitación"
-    const openBtn = e.target.closest("#openInvitation");
-    if (openBtn) {
+// 2. Al hacer clic en el botón flotante de la música (♪)
+    if(e.target.id === "musicButton"){
         const music = document.getElementById("bgMusic");
         const musicBtn = document.getElementById("musicButton");
 
-        if (music && music.paused) {
-            music.play().then(() => {
-                if (musicBtn) musicBtn.innerHTML = "♫";
-            }).catch((err) => {
-                console.log("Error al iniciar audio:", err);
-            });
-        }
-
-        const storyScene = document.querySelector(".story-scene");
-        if (storyScene) {
-            storyScene.scrollIntoView({ behavior: "smooth" });
-        }
-
-        if (typeof startStory === "function") {
-            startStory();
-        }
-    }
-
-    // 2. Botón flotante de Música (♪)
-    const musicBtn = e.target.closest("#musicButton");
-    if (musicBtn) {
-        const music = document.getElementById("bgMusic");
-
-        if (music) {
-            if (music.paused) {
+        if(music){
+            if(!playing){
                 music.play().then(() => {
-                    musicBtn.innerHTML = "♫";
-                }).catch((err) => {
-                    console.log("Error al reproducir:", err);
-                });
+                    playing = true;
+                    if(musicBtn) musicBtn.innerHTML = "♫";
+                }).catch(err => console.log(err));
             } else {
                 music.pause();
-                musicBtn.innerHTML = "♪";
+                playing = false;
+                if(musicBtn) musicBtn.innerHTML = "♪";
             }
         }
     }
 
 });
+
 function startStory(){
     const lines = document.querySelectorAll(".story-line");
     let index = 0;
