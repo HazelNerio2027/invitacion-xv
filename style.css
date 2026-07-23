@@ -64,30 +64,79 @@ body{
 /* ====================================
             HERO SECTION
 ==================================== */
-.hero-content {
+/* ====================================
+            HERO SECTION
+==================================== */
+.hero{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+.hero-content{
     position: relative;
     z-index: 2;
+    text-align: center;
     color: white;
     max-width: 700px;
+    width: 100%;
     padding: 20px;
-    width: 100%;
-    
-    /* Fuerza el centrado absoluto de todo el contenido */
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-content h3,
-.hero-content h1,
-.hero-content p {
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+.hero-content h3{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 35px;
+    letter-spacing: 4px;
+    text-align: center;
     width: 100%;
 }
 
-.hero-content button {
+.hero-content h1{
+    font-family: 'Great Vibes', cursive;
+    font-size: 100px;
+    color: #D4AF37;
+    margin: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.hero-content p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: center;
+    width: 100%;
+}
+
+.hero-content button{
     margin-top: 40px;
     padding: 15px 45px;
     border: none;
@@ -97,12 +146,10 @@ body{
     font-weight: 600;
     cursor: pointer;
     transition: .3s;
-    
-    /* Centrado garantizado para el botón */
-    display: inline-block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center !important;
+}
+
+.hero-content button:hover{
+    transform: translateY(-5px);
 }
 
 /* ====================================
