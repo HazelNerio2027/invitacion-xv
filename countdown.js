@@ -1,5 +1,5 @@
 // Fecha del evento: 21 de Noviembre de 2026 a las 18:00 hrs
-const eventDate = new Date(2026, 10, 21, 18, 0, 0).getTime();
+var eventDate = new Date(2026, 10, 21, 18, 0, 0).getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
