@@ -1,14 +1,65 @@
+let playing = false; // Variable global para control de música
+
 function iniciarLoader() {
     setTimeout(() => {
         const loader = document.querySelector(".loader-screen");
         if(loader){
-            loader.style.opacity="0";
-            setTimeout(()=>{
+            loader.style.opacity = "0";
+            setTimeout(() => {
                 loader.remove();
-            },800);
+            }, 800);
         }
     }, 3000);
 }
+
+// Escuchador global para los clics en la página
+document.addEventListener("click", function(e) {
+
+    // 1. Botón "Abrir Invitación" (#openInvitation)
+    const openBtn = e.target.closest("#openInvitation");
+    if (openBtn) {
+        const music = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicButton");
+
+        // Iniciar música si está pausada
+        if (music && music.paused) {
+            music.play().then(() => {
+                playing = true;
+                if (musicBtn) musicBtn.innerHTML = "♫";
+            }).catch(err => console.log("Error de audio:", err));
+        }
+
+        // Desplazamiento suave a la siguiente sección
+        const storyScene = document.querySelector(".story-scene") || document.querySelector("#story");
+        if (storyScene) {
+            storyScene.scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Iniciar animación de la historia si existe
+        if (typeof startStory === "function") {
+            startStory();
+        }
+    }
+
+    // 2. Botón flotante de la música (#musicButton)
+    const musicBtn = e.target.closest("#musicButton");
+    if (musicBtn) {
+        const music = document.getElementById("bgMusic");
+
+        if (music) {
+            if (music.paused) {
+                music.play().then(() => {
+                    playing = true;
+                    musicBtn.innerHTML = "♫";
+                }).catch(err => console.log("Error al reproducir:", err));
+            } else {
+                music.pause();
+                playing = false;
+                musicBtn.innerHTML = "♪";
+            }
+        }
+    }
+});
 
 // 2. Al hacer clic en el botón flotante de la música (♪)
     if(e.target.id === "musicButton"){
