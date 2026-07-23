@@ -10,17 +10,15 @@ function iniciarLoader() {
     }, 3000);
 }
 
-// Variable para controlar si la música está sonando o no
-var Playing = false;
 document.addEventListener("click", function(e){
 
     // 1. Al hacer clic en "Abrir Invitación"
-    if(e.target.id === "openInvitation"){
+    const openBtn = e.target.closest("#openInvitation");
+    if(openBtn){
         const music = document.getElementById("bgMusic");
 
         if(music){
             music.play().then(() => {
-                playing = true;
                 const musicBtn = document.getElementById("musicButton");
                 if(musicBtn) musicBtn.innerHTML = "♫";
             }).catch((err) => {
@@ -28,28 +26,30 @@ document.addEventListener("click", function(e){
             });
         }
 
-        document.querySelector(".story-scene").scrollIntoView({
-            behavior:"smooth"
-        });
+        const storyScene = document.querySelector(".story-scene");
+        if(storyScene){
+            storyScene.scrollIntoView({ behavior: "smooth" });
+        }
 
-        startStory();
+        if(typeof startStory === "function"){
+            startStory();
+        }
     }
 
     // 2. Al hacer clic en el botón flotante de la música (♪)
-    if(e.target.id === "musicButton"){
+    const musicBtn = e.target.closest("#musicButton");
+    if(musicBtn){
         const music = document.getElementById("bgMusic");
-        const musicBtn = document.getElementById("musicButton");
 
         if(music){
-            if(!playing){
+            // Preguntamos directamente si el elemento audio está pausado
+            if(music.paused){
                 music.play().then(() => {
-                    playing = true;
-                    if(musicBtn) musicBtn.innerHTML = "♫";
-                }).catch(err => console.log(err));
+                    musicBtn.innerHTML = "♫";
+                }).catch(err => console.log("Error al reproducir:", err));
             } else {
                 music.pause();
-                playing = false;
-                if(musicBtn) musicBtn.innerHTML = "♪";
+                musicBtn.innerHTML = "♪";
             }
         }
     }
