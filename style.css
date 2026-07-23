@@ -105,39 +105,6 @@ body{
     text-align: center !important;
 }
 
-.hero-content button{
-    margin-top:40px;
-    padding:15px 45px;
-    border:none;
-    border-radius:50px;
-    background:#D4AF37;
-    color:black;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
-    /* Aseguramos que el botón no herede márgenes laterales extra */
-    margin-left:auto;
-    margin-right:auto;
-    display:inline-block;
-}
-    
-}
-
-.hero-content button{
-    margin-top:40px;
-    padding:15px 45px;
-    border:none;
-    border-radius:50px;
-    background:#D4AF37;
-    color:black;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
-    /* Aseguramos que el botón no herede márgenes laterales extra */
-    margin-left:auto;
-    margin-right:auto;
-    display:inline-block;
-}
 /* ====================================
             NAVBAR
 ==================================== */
