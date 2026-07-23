@@ -1,0 +1,34 @@
+<section class="rsvp-cinematic">
+    <div class="cinematic-badge">PASE VIP</div>
+    <h2 class="cinematic-title">Confirmar Asistencia</h2>
+    <p class="cinematic-subtitle">ASEGURA TU LUGAR EN LA LISTA DE INVITADOS</p>
+
+    <form id="rsvpForm" class="rsvp-form">
+        <div class="input-group">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Carlos Mendoza" required>
+        </div>
+
+        <div class="input-group">
+            <label for="asistencia">¿Nos acompañarás?:</label>
+            <select id="asistencia" name="asistencia" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Sí, ahí estaré">¡Sí, con mucho gusto!</option>
+                <option value="No podré asistir">Lamentablemente no podré</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="pases">Número de Acompañantes:</label>
+            <input type="number" id="pases" name="pases" min="1" max="5" value="1" required>
+        </div>
+
+        <div class="input-group">
+            <label for="mensaje">Mensaje o Felicitación:</label>
+            <textarea id="mensaje" name="mensaje" rows="3" placeholder="Escribe un mensaje especial..."></textarea>
+        </div>
+
+        <button type="submit" id="btnSubmit" class="rsvp-btn">Confirmar Asistencia</button>
+        <p id="rsvpStatus" class="rsvp-status"></p>
+    </form>
+</section>

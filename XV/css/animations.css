@@ -1,0 +1,78 @@
+@keyframes grow{
+
+    0%{
+
+        width:0;
+        opacity:0;
+
+    }
+
+    100%{
+
+        width:180px;
+        opacity:1;
+
+    }
+
+}
+
+.loader-content{
+
+    animation:fadeIn 1.3s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+@keyframes lightMove{
+
+    0%{
+
+        transform:translate(-250px,-120px);
+
+    }
+
+    50%{
+
+        transform:translate(220px,80px);
+
+    }
+
+    100%{
+
+        transform:translate(-250px,-120px);
+
+    }
+
+}
+
+@keyframes particles{
+
+    from{
+
+        transform:translateY(0);
+
+    }
+
+    to{
+
+        transform:translateY(-300px);
+
+    }
+
+}
