@@ -11,7 +11,7 @@ function iniciarLoader() {
 }
 
 // Variable para controlar si la música está sonando o no
-var playing = false;
+var Playing = false;
 document.addEventListener("click", function(e){
 
     // 1. Al hacer clic en "Abrir Invitación"
