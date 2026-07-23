@@ -10,46 +10,55 @@ function iniciarLoader() {
     }, 3000);
 }
 
-document.addEventListener("click", function(e){
+document.addEventListener("click", function(e) {
 
-    // 1. Al hacer clic en "Abrir Invitación"
+    // 1. Botón "Abrir Invitación"
     const openBtn = e.target.closest("#openInvitation");
-    if(openBtn){
+    if (openBtn) {
         const music = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicButton");
 
-        if(music && music.paused){
+        if (music) {
+            // Carga el recurso limpiamente antes de dar play
+            music.load(); 
+            
             music.play().then(() => {
-                const musicBtn = document.getElementById("musicButton");
-                if(musicBtn) musicBtn.innerHTML = "♫";
+                if (musicBtn) musicBtn.innerHTML = "♫";
             }).catch((err) => {
-                console.log("No se pudo iniciar el audio:", err);
+                console.log("Error al iniciar audio:", err);
             });
         }
 
         const storyScene = document.querySelector(".story-scene");
-        if(storyScene){
+        if (storyScene) {
             storyScene.scrollIntoView({ behavior: "smooth" });
         }
 
-        if(typeof startStory === "function"){
+        if (typeof startStory === "function") {
             startStory();
         }
     }
 
-    // 2. Al hacer clic en el botón flotante de la música (♪)
+    // 2. Botón flotante de Música (♪)
     const musicBtn = e.target.closest("#musicButton");
-    if(musicBtn){
+    if (musicBtn) {
         const music = document.getElementById("bgMusic");
 
-        if(music){
-            if(music.paused){
-                music.play().then(() => {
-                    musicBtn.innerHTML = "♫";
-                }).catch(err => console.log("Error al reproducir:", err));
-            } else {
-                // Pausar solo si ya está reproduciéndose activamente
+        if (music) {
+            // Si el audio está sonando actualmente, lo pausamos
+            if (!music.paused) {
                 music.pause();
                 musicBtn.innerHTML = "♪";
+            } else {
+                // Si está pausado, intentamos reproducirlo
+                music.play().then(() => {
+                    musicBtn.innerHTML = "♫";
+                }).catch((err) => {
+                    console.log("Error al reanudar audio:", err);
+                    // Si falla por algún problema de carga, lo recargamos
+                    music.load();
+                    music.play();
+                });
             }
         }
     }
