@@ -1,3 +1,14 @@
+function iniciarLoader() {
+    setTimeout(() => {
+        const loader = document.querySelector(".loader-screen");
+        if(loader){
+            loader.style.opacity = "0";
+            setTimeout(() => {
+                loader.remove();
+            }, 800);
+        }
+    }, 3000);
+}
 async function loadComponent(id, file) {
 
     const response = await fetch(file);
