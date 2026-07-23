@@ -1,3 +1,55 @@
+<style>
+@media (max-width: 768px) {
+    nav, .navbar, header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 8px 12px !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-radius: 20px !important;
+        margin: 10px auto !important;
+        width: 90% !important;
+    }
+
+    /* El texto del Logo / Nombre */
+    .logo, .brand, .navbar-brand, nav h1, nav a:first-child {
+        font-size: 20px !important;
+        margin-bottom: 6px !important;
+        display: block !important;
+        text-align: center !important;
+    }
+
+    /* La lista de enlaces (Inicio, Galería, Evento...) */
+    ul, .nav-links, .menu, nav div {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        gap: 12px !important;
+        padding: 4px 0 !important;
+        justify-content: flex-start !important;
+        -webkit-overflow-scrolling: touch !important;
+        list-style: none !important;
+    }
+
+    ul::-webkit-scrollbar, .nav-links::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    a, li a {
+        font-size: 13px !important;
+        padding: 4px 8px !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        flex-shrink: 0 !important;
+    }
+}
+</style>
+
 <nav class="navbar">
 
     <div class="logo">
