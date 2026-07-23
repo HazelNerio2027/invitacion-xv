@@ -1,9 +1,11 @@
-let playing = false; // Variable global para control de música
+// Variable global para control de estado de música
+let playing = false;
 
+// 1. Ocultar pantalla de carga (Loader)
 function iniciarLoader() {
     setTimeout(() => {
-        const loader = document.querySelector(".loader-screen");
-        if(loader){
+        const loader = document.querySelector(".loader-screen") || document.getElementById("loader");
+        if (loader) {
             loader.style.opacity = "0";
             setTimeout(() => {
                 loader.remove();
@@ -12,36 +14,57 @@ function iniciarLoader() {
     }, 3000);
 }
 
-// Escuchador global para los clics en la página
-document.addEventListener("click", function(e) {
+// Ejecutar loader al cargar la página
+document.addEventListener("DOMContentLoaded", iniciarLoader);
 
-    // 1. Botón "Abrir Invitación" (#openInvitation)
+// 2. Control de la animación de la historia
+function startStory() {
+    const lines = document.querySelectorAll(".story-line");
+    let index = 0;
+
+    function next() {
+        if (index > 0 && lines[index - 1]) {
+            lines[index - 1].classList.remove("active");
+            lines[index - 1].classList.add("hide");
+        }
+
+        if (index < lines.length && lines[index]) {
+            lines[index].classList.add("active");
+            index++;
+            setTimeout(next, 2600);
+        }
+    }
+
+    next();
+}
+
+// 3. Manejador de eventos de clic (Botones, Música y Lightbox)
+document.addEventListener("click", function (e) {
+
+    // --- A. Botón "Abrir Invitación" ---
     const openBtn = e.target.closest("#openInvitation");
     if (openBtn) {
         const music = document.getElementById("bgMusic");
         const musicBtn = document.getElementById("musicButton");
 
-        // Iniciar música si está pausada
         if (music && music.paused) {
             music.play().then(() => {
                 playing = true;
                 if (musicBtn) musicBtn.innerHTML = "♫";
-            }).catch(err => console.log("Error de audio:", err));
+            }).catch(err => console.log("Error al reproducir audio:", err));
         }
 
-        // Desplazamiento suave a la siguiente sección
         const storyScene = document.querySelector(".story-scene") || document.querySelector("#story");
         if (storyScene) {
             storyScene.scrollIntoView({ behavior: "smooth" });
         }
 
-        // Iniciar animación de la historia si existe
         if (typeof startStory === "function") {
             startStory();
         }
     }
 
-    // 2. Botón flotante de la música (#musicButton)
+    // --- B. Botón flotante de Música (♪) ---
     const musicBtn = e.target.closest("#musicButton");
     if (musicBtn) {
         const music = document.getElementById("bgMusic");
@@ -59,50 +82,8 @@ document.addEventListener("click", function(e) {
             }
         }
     }
-});
 
-// 2. Al hacer clic en el botón flotante de la música (♪)
-    if(e.target.id === "musicButton"){
-        const music = document.getElementById("bgMusic");
-        const musicBtn = document.getElementById("musicButton");
-
-        if(music){
-            if(!playing){
-                music.play().then(() => {
-                    playing = true;
-                    if(musicBtn) musicBtn.innerHTML = "♫";
-                }).catch(err => console.log(err));
-            } else {
-                music.pause();
-                playing = false;
-                if(musicBtn) musicBtn.innerHTML = "♪";
-            }
-        }
-    }
-
-});
-
-function startStory(){
-    const lines = document.querySelectorAll(".story-line");
-    let index = 0;
-
-    function next(){
-        if(index > 0){
-            lines[index-1].classList.remove("active");
-            lines[index-1].classList.add("hide");
-        }
-
-        if(index < lines.length){
-            lines[index].classList.add("active");
-            index++;
-            setTimeout(next, 2600);
-        }
-    }
-
-    next();
-}
-// Abrir imágenes en pantalla completa (Lightbox)
-document.addEventListener("click", function(e) {
+    // --- C. Galería / Lightbox ---
     const card = e.target.closest(".gallery-card");
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
@@ -121,7 +102,8 @@ document.addEventListener("click", function(e) {
     }
 });
 
-document.addEventListener("submit", function(e) {
+// 4. Formulario de confirmación (RSVP)
+document.addEventListener("submit", function (e) {
     if (e.target && e.target.id === "rsvpForm") {
         e.preventDefault();
 
@@ -129,25 +111,31 @@ document.addEventListener("submit", function(e) {
         const statusText = document.getElementById("rsvpStatus");
         const submitBtn = document.getElementById("btnSubmit");
 
-        const scriptURL = "https://script.google.com/macros/s/AKfycbzUtxgXgTAe7LPtCqQUTcjvqTMTdbRBjTHY8_2-thIGjUYDlMrWvx7wegvNbK_Ym_YrAg/exec"; 
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzUtxgXgTAe7LPtCqQUTcjvqTMTdbRBjTHY8_2-thIGjUYDlMrWvx7wegvNbK_Ym_YrAg/exec";
 
-        submitBtn.disabled = true;
-        statusText.textContent = "Enviando confirmación...";
-        statusText.style.color = "#D4AF37";
+        if (submitBtn) submitBtn.disabled = true;
+        if (statusText) {
+            statusText.textContent = "Enviando confirmación...";
+            statusText.style.color = "#D4AF37";
+        }
 
         const formData = new FormData(form);
 
         fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => {
-                statusText.textContent = "¡Gracias! Tu asistencia ha sido registrada ✨";
-                statusText.style.color = "#4CAF50";
+                if (statusText) {
+                    statusText.textContent = "¡Gracias! Tu asistencia ha sido registrada ✨";
+                    statusText.style.color = "#4CAF50";
+                }
                 form.reset();
-                submitBtn.disabled = false;
+                if (submitBtn) submitBtn.disabled = false;
             })
             .catch(error => {
-                statusText.textContent = "Hubo un error al enviar. Inténtalo de nuevo.";
-                statusText.style.color = "#F44336";
-                submitBtn.disabled = false;
+                if (statusText) {
+                    statusText.textContent = "Hubo un error al enviar. Inténtalo de nuevo.";
+                    statusText.style.color = "#F44336";
+                }
+                if (submitBtn) submitBtn.disabled = false;
             });
     }
 });
