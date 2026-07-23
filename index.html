@@ -13,9 +13,10 @@
     <title>Invitación Digital</title>
 
     <!-- Hojas de Estilo (CSS en la raíz) -->
-    <link rel="stylesheet" href="responsive.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="animations.css">
+    <!-- Cargar primero el CSS principal y luego el responsive -->
+<link rel="stylesheet" href="animations.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="responsive.css"> <!-- Debe ser el ÚLTIMO CSS -->
 
     <!-- Scripts JS (JS en la raíz) -->
     <script defer src="components.js"></script>
