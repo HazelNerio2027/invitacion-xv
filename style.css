@@ -64,31 +64,6 @@ body{
 /* ====================================
             HERO SECTION
 ==================================== */
-.hero{
-    position:relative;
-    width:100%;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-}
-
-.hero-image{
-    position:absolute;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.hero-overlay{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.45);
-    z-index:1;
-}
-
 .hero-content{
     position:relative;
     z-index:2;
@@ -96,25 +71,12 @@ body{
     color:white;
     max-width:700px;
     padding:20px;
-}
-
-.hero-content h3{
-    font-family:'Cormorant Garamond', serif;
-    font-size:35px;
-    letter-spacing:4px;
-}
-
-.hero-content h1{
-    font-family:'Great Vibes', cursive;
-    font-size:100px;
-    color:#D4AF37;
-    margin:20px 0;
-}
-
-.hero-content p{
-    font-family:'Poppins', sans-serif;
-    font-size:18px;
-    line-height:1.8;
+    width:100%;
+    /* Agregamos flexbox para centrar estrictamente todos los elementos hijos */
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 }
 
 .hero-content button{
@@ -127,12 +89,11 @@ body{
     font-weight:600;
     cursor:pointer;
     transition:.3s;
+    /* Aseguramos que el botón no herede márgenes laterales extra */
+    margin-left:auto;
+    margin-right:auto;
+    display:inline-block;
 }
-
-.hero-content button:hover{
-    transform:translateY(-5px);
-}
-
 /* ====================================
             NAVBAR
 ==================================== */
